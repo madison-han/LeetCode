@@ -10,23 +10,16 @@ class Solution {
 
         for (int i = 0; i < len; i++) {
             c = s.charAt(i);
-            if (!pairs.containsKey(c)) {
+            if (!pairs.containsKey(c) || pairs.get(c) == 0) {
                 pairs.put(c, 1); // Add it to pairs, move on
             } else {
-                temp = pairs.get(c);
-                if (temp == 1) { // The second of the pair
-                    ans += 2;
-                    pairs.put(c, 0); // The pair is gone
-                } else {
-                    pairs.put(c, 1); 
-                }
+                ans += 2;
+                pairs.put(c, 0); // The pair is gone
             }
             
         }
 
-        if (len > ans) ans++;
-
-        return ans;
+        return len > ans ? ans + 1 : ans;
 
     }
 }
