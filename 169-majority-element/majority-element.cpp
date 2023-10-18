@@ -5,21 +5,20 @@ public:
 
         if (n <= 2) return nums[0];
 
-        int major = nums[0], count = 1;
+        map<int, int> count;
+
+        int temp = 0;
 
 
-        for (int i = 1; i < n; i++) {
-            if (count == 0) {
-                count++;
-                major = nums[i];
-            } else if (major == nums[i]) {
-                count++;
-            } else {
-                count--;
-            }
+        for (int i = 0; i < n; i++) {
+            temp = nums[i]++;
+            count[temp]++;
+
+            if (count[temp] > (n / 2)) return temp;
+
         }
 
-        return major;
+        return 0;
         
     }
 };
