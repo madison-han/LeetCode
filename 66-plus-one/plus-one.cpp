@@ -8,12 +8,16 @@ public:
             return digits;
         }
 
+        bool addOne = true;
 
         for (int i = n - 1; i >= 0; i--) {
             digits[i]++;
 
-            if(digits[i] >= 10 && i != 0) digits[i] = 0;
-            else break;
+            if(digits[i] >= 10 && i != 0) {
+                digits[i] = 0;
+            } else {
+                break;
+            }
         }
 
         if (digits[0] >= 10) {
