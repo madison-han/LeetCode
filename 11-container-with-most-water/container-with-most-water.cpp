@@ -8,7 +8,7 @@ public:
             int area = min(h[start],h[end]) * abs(start-end);
             if (area > ans) { ans = area; }
 
-            if ( h[start] <= h[end]) {
+            if ( h[start] < h[end]) {
                 start++;
             } else {
                 end--;
