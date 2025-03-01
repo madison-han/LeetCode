@@ -9,11 +9,11 @@ public:
 
             count[s] += num;
 
-            const string og = s;
-
-            while (s.rfind(".") != string::npos) {
-                count[og.substr(s.rfind(".") + 1)] += num;
-                s = s.substr(0, s.rfind("."));
+            int slen = s.length();
+            for (int i = slen-1; i>=0; i--) {
+                if (s[i] == '.') {
+                    count[s.substr(i+1)] += num;
+                }
             }
         }
         vector<string> ans;
