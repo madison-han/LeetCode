@@ -5,15 +5,6 @@ public:
         if (ay1 >= by2 || ay2 <= by1 || ax2 <= bx1 || ax1 >= bx2) { 
             return ans; 
         }
-
-        int cy1 = 0, cx1 = 0, cy2 = 0, cx2 = 0;
-
-        cy1 = ay1 >= by1 ? ay1 : by1;
-        cx1 = ax1 >= bx1 ?  ax1 : bx1;
-        cy2 = ay2 <= by2 ? ay2 : by2;
-        cx2 = ax2 <= bx2 ?  ax2 : bx2;
-        cout << cx1 << " " << cy1 << " " << cx2 << " " << cy2 << " ";
-        
-        return (ans-  ((cx2 - cx1) * (cy2 - cy1)));
+        return (ans-  ((min(ax2, bx2) - max(ax1, bx1)) * (min(ay2, by2) - max(ay1, by1))));
     }
 };
