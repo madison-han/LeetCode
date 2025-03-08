@@ -1,29 +1,26 @@
 class Solution {
 public:
     string reverseWords(string s) {
-        int n = s.length();
-        string temp = "", ans = "";
-        bool first = true;
-
-        for (int i = 0; i < n; i++) {
-            if (s[i] == ' ') {
-                // ignore leading white space, extra space, last space
-                if ((i + 1 < n && s[i+1] == ' ') || i == n-1 || temp == "") {
-                    continue;
-                }
-
-
-                ans = " " + temp + ans;
-                temp = "";
-            } else {
-                temp += s[i];
-                cout << temp << endl;
-            }
+        s.erase(0, s.find_first_not_of(' ')); 
+        s.erase(s.find_last_not_of(' ') + 1); 
+        
+        vector<string> words;
+        stringstream ss(s);
+        string word;
+        while (ss >> word) {
+            words.push_back(word);
         }
 
-        if (temp != "") { return (temp + ans); }
+        reverse(words.begin(), words.end());
 
-        return ans;
-        
+        string result;
+        for (size_t i = 0; i < words.size(); ++i) {
+            if (i > 0) {
+                result += ' '; 
+            }
+            result += words[i];
+        }
+
+        return result;
     }
 };
