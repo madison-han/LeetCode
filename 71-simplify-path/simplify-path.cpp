@@ -4,31 +4,30 @@ public:
         if (path.length() == 1) return "/";
         string ans = "";
 
-        vector<string> files;
-        stringstream ss(path);
-        string word = "";
-        while (getline(ss, word, '/')) { files.push_back(word); }
+        stack<string> st;
 
-        int n = files.size();
-        int skip = 0;
+        int n = path.length();
+        string temp="";
 
-        for (int i =n-1; i >= 0; i--) {
-            while (files[i] == ".." && i >0) {
-                skip++;
-                i--;
-            } 
-            cout << "G " << skip<<endl;
-            if (skip > 0 && files[i] != "." && files[i] != "") {
-                files[i] = "";
-                skip--;
+        for (int i =0; i< n; i++) {
+            if (path[i] =='/') continue;
+
+            temp = "";
+            while (i < n && path[i] != '/') {
+                temp += path[i++];
             }
 
+            if (temp == ".") continue;
+            else if (temp == "..") {
+                if (!st.empty()) st.pop();
+            } else {
+                st.push(temp);
+            }
         }
 
-        for (int i = 0; i<n; i++) {
-            if (files[i] != "." && files[i] != ".." && files[i] != "") {
-                ans += "/" + files[i];
-            }
+        while(!st.empty()) {
+            ans = "/" + st.top() + ans;
+            st.pop();
         }
 
         if (ans == "") {ans = "/";}
