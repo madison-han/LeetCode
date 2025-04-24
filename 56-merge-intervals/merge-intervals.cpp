@@ -4,9 +4,7 @@ public:
         int n = pairs.size();
         if (n == 1) { return pairs; }
 
-        sort(pairs.begin(), pairs.end(), [](const vector<int>& a, const vector<int>& b) {
-            return a[0] < b[0]; // Sort by the first element
-        });
+        sort(pairs.begin(), pairs.end());
         
         for (int i = 1; i < n; i++) {
             // new pair
